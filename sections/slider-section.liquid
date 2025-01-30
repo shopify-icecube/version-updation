@@ -1,44 +1,62 @@
-<div class="custom">
-{% for block in section.blocks %}
-  <div class="image-block">
-    {% if block.settings.image %}
-      <img src="{{ block.settings.image | img_url: 'medium' }}" alt="Image Block">
-    {% else %}
-      <p>No image selected</p>
-    {% endif %}
-  </div>
-{% endfor %}
+<div class="custom-section" style="background-image:url({{ section.settings.background_img | img_url:'master' }});">
+  <h2>{{ section.settings.custom-task }}</h2>
+  {% for blocks in section.blocks %}
+    <h4>{{ blocks.settings.block-one-heading }}</h4>
+    <p>{{ blocks.settings.block-text-area }}</p>
+    <a href="{{ blocks.settings.btn_link }}" class="custom_button">{{ blocks.settings.btn_text }}</a>
+  {% endfor %}
 </div>
 
 {% schema %}
   {
-    "name": "Custom Section",
-    "settings": [],
-    "blocks": [
+    "name": "Section Task One",
+    "settings": [
       {
-        "type": "image_picker",
-        "name": "Image Block",
-        "settings": [
+        "type": "text",
+        "id": "custom-task",
+        "label":"Custom Task"
+      },
           {
             "type": "image_picker",
-            "label": "Select an Image",
-            "id": "image",
-            "default": ""
+            "id": "background_img",
+            "label": "Background Image"
+          }
+    ],
+    "blocks":[
+      {
+        "type":"text",
+        "name": "heading",
+        "settings":[
+          {
+            "type": "text",
+            "id":"block-one-heading",
+            "label":"Block One Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "block-text-area",
+            "label": "Block Text Area"
+          },
+          {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button Text",
+            "default":"Click Me"
+          },
+          {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button Link",
+            "default":"/"
           }
         ]
       }
     ],
     "presets": [
       {
-        "name": "Default",
-        "category": "Custom"
+        "name": "Slider Custom",
+        "category":"slider"
       }
     ]
   }
 {% endschema %}
-
-{% stylesheet %}
-  .image-block {
-    margin-bottom: 20px;
-  }
-{% endstylesheet %}
