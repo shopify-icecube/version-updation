@@ -1,0 +1,21 @@
+<img src="{{ section.settings.image_with_text_image |  img_url: 'medium' }}" alt="">
+
+{%  schema  %}  
+
+    {
+        "name": "testing section",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image_with_text_image",
+                "label": "Image"
+            }
+        ],
+        "presets": [
+            {
+                "name":"testing section"
+            } 
+        ]
+    }
+
+{% endschema %}
