@@ -1,9 +1,14 @@
 <div class="custom-section" style="background-image:url({{ section.settings.background_img | img_url:'master' }});">
   <h2>{{ section.settings.custom-task }}</h2>
-  {% for blocks in section.blocks %}
-    <h4>{{ blocks.settings.block-one-heading }}</h4>
-    <p>{{ blocks.settings.block-text-area }}</p>
-    <a href="{{ blocks.settings.btn_link }}" class="custom_button">{{ blocks.settings.btn_text }}</a>
+  {% for block in section.blocks %}
+    <div class="block">
+      {% if block.settings.block_image %}
+        <img src="{{ block.settings.block_image | img_url: 'master' }}" alt="Block Image">
+      {% endif %}
+      <h4>{{ block.settings.block-one-heading }}</h4>
+      <p>{{ block.settings.block-text-area }}</p>
+      <a href="{{ block.settings.btn_link }}" class="custom_button">{{ block.settings.btn_text }}</a>
+    </div>
   {% endfor %}
 </div>
 
@@ -14,23 +19,23 @@
       {
         "type": "text",
         "id": "custom-task",
-        "label":"Custom Task"
+        "label": "Custom Task"
       },
-          {
-            "type": "image_picker",
-            "id": "background_img",
-            "label": "Background Image"
-          }
-    ],
-    "blocks":[
       {
-        "type":"text",
+        "type": "image_picker",
+        "id": "background_img",
+        "label": "Background Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
         "name": "heading",
-        "settings":[
+        "settings": [
           {
             "type": "text",
-            "id":"block-one-heading",
-            "label":"Block One Heading"
+            "id": "block-one-heading",
+            "label": "Block One Heading"
           },
           {
             "type": "textarea",
@@ -41,13 +46,18 @@
             "type": "text",
             "id": "btn_text",
             "label": "Button Text",
-            "default":"Click Me"
+            "default": "Click Me"
           },
           {
             "type": "url",
             "id": "btn_link",
             "label": "Button Link",
-            "default":"/"
+            "default": "/"
+          },
+          {
+            "type": "image_picker",
+            "id": "block_image",
+            "label": "Block Image"
           }
         ]
       }
@@ -55,7 +65,7 @@
     "presets": [
       {
         "name": "Slider Custom",
-        "category":"slider"
+        "category": "slider"
       }
     ]
   }
