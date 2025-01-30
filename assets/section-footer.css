@@ -78,6 +78,7 @@
 
 .footer__localization:empty + .footer__column--info {
   align-items: center;
+  background-color: brown;
 }
 
 @media screen and (max-width: 749px) {
