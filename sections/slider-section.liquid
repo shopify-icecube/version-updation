@@ -1,0 +1,44 @@
+<div class="custom">
+{% for block in section.blocks %}
+  <div class="image-block">
+    {% if block.settings.image %}
+      <img src="{{ block.settings.image | img_url: 'medium' }}" alt="Image Block">
+    {% else %}
+      <p>No image selected</p>
+    {% endif %}
+  </div>
+{% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Custom Section with Image Picker Block",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "image_picker",
+        "name": "Image Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "label": "Select an Image",
+            "id": "image",
+            "default": ""
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Default",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+  .image-block {
+    margin-bottom: 20px;
+  }
+{% endstylesheet %}
